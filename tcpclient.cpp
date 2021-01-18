@@ -101,7 +101,7 @@ void TcpClient::clientThread_(int conn_socket)
                 std::string tmp = "counter:" + std::string(buff);
                 counter_.store(value);
                 emit changedCounter(counter_);
-                if (send(conn_socket, buff, COUNTER_SIZE, 0) < 0)
+                if (send(conn_socket, tmp.c_str(), tmp.size(), 0) < 0)
                 {
                     emit disconnection();
                     throw std::runtime_error("disconnected");
