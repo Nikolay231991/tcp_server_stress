@@ -75,7 +75,7 @@ TcpClient::~TcpClient()
 
 void TcpClient::clientThread_(int conn_socket)
 {
-    std::string str_counter = "counter:" + std::to_string(counter_);
+    std::string str_counter = "test:counter:" + std::to_string(counter_);
     try
     {
         int status = send(conn_socket, str_counter.c_str(), str_counter.size(), 0);
@@ -98,7 +98,7 @@ void TcpClient::clientThread_(int conn_socket)
             else
             {
                 int value = atoi(buff);
-                std::string tmp = "counter:" + std::string(buff);
+                std::string tmp = "test:counter:" + std::string(buff);
                 counter_.store(value);
                 emit changedCounter(counter_);
                 if (send(conn_socket, tmp.c_str(), tmp.size(), 0) < 0)
