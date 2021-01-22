@@ -498,14 +498,8 @@ void MainWindow::onCounterChange_7(int counter)
 
 void MainWindow::stressCounter(int counter)
 {
-    if (counter > 0)
-    {
-        ui->active_conns->setText(QString::number(counter));
-    }
-    else
-    {
-        ui->active_conns->setText("0");
-    }
+    int actualCounter = connStress_->getActiveConns();
+    ui->active_conns->setText(QString::number(actualCounter));
 }
 
 void MainWindow::stressResult(bool result)

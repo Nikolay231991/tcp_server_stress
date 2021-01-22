@@ -34,6 +34,11 @@ public:
 
     void stressThread();
 
+    inline int getActiveConns()
+    {
+        return activeConns_;
+    }
+
     ~ConnectionsStress();
 
 public slots:

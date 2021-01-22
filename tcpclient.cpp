@@ -21,7 +21,7 @@ void TcpClient::tcp_connect()
         sock_ = socket(AF_INET, SOCK_STREAM, 0);
         if (sock_ < 0)
         {
-            throw std::runtime_error("socket creation failed\n");
+            std::runtime_error("socket creation failed\n");
         }
 
         struct sockaddr_in serv_addr;
@@ -110,11 +110,11 @@ void TcpClient::clientThread_(int conn_socket)
 
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
         }
-         close(conn_socket);
+        shutdown(conn_socket,  SHUT_WR);
     }
     catch (const std::exception& e)
     {
-        close(conn_socket);
+        shutdown(conn_socket,  SHUT_WR);
     }
 }
 
